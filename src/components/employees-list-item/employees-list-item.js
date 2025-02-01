@@ -5,7 +5,7 @@ class EmployeesListItem extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			increase: false,
+			increase: this.props.increase,
 			like: false
 		}
 	}
