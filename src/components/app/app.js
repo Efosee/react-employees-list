@@ -28,9 +28,7 @@ class App extends Component {
 			}
 		})
 	}
-	addItem = (e, newItem, increase = false) => {
-		e.preventDefault();
-
+	addItem = (newItem, increase = false) => {
 		newItem["id"] = this.maxId;
 		this.maxId++;
 
