@@ -56,7 +56,7 @@ class App extends Component {
 			}
 		})
 	} 
-	onToggleProp = (id) => {
+	onToggleRice = (id) => {
 		this.setState(({data}) => ({
 			data: data.map(item => {
 				if (item.id === id){
@@ -82,7 +82,7 @@ class App extends Component {
 				<EmployeesList data={this.state.data}
 					onDelete={this.deleteItem} 
 					onToggleIncrease={this.onToggleIncrease}
-					onToggleRise={this.onToggleRise}/>
+					onToggleRise={this.onToggleRice}/>
 				<EmployeesAddForm
 					onAdd={this.addItem} />
 			</div>
