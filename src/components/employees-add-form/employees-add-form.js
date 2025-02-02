@@ -16,6 +16,10 @@ class EmployeesAddForm extends Component {
 	}
 	onSubmit = (e) =>{
 		e.preventDefault();
+		if (this.state.name.length < 3 || this.state.salary === ''){
+			alert("Введите больше 3-х символов ФИО и укажите зарплату");
+			return
+		}
 		this.props.onAdd({name: this.state.name, salary: this.state.salary})
 		this.setState({
 			name: '',
