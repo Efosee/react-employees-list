@@ -12,9 +12,9 @@ class App extends Component {
 		super(props);
 		this.state = {
 			data: [
-				{ name: "John", salary: 750, increase: true, rice: true, id: 1 },
-				{ name: "Alex", salary: 3000, increase: false, rice: false, id: 2 },
-				{ name: "Survey", salary: 4000, increase: false, rice: false, id: 3 }
+				{ name: "John", salary: 750, increase: true, rise: true, id: 1 },
+				{ name: "Alex", salary: 3000, increase: false, rise: false, id: 2 },
+				{ name: "Survey", salary: 4000, increase: false, rise: false, id: 3 }
 			]
 		}
 		this.maxId = 4;
@@ -28,11 +28,11 @@ class App extends Component {
 			}
 		})
 	}
-	addItem = (newItem, increase = false, rice = false) => {
+	addItem = (newItem, increase = false, rise = false) => {
 		newItem["id"] = this.maxId;
 		this.maxId++;
 		newItem["increase"] = increase;
-		newItem["rice"] = rice;
+		newItem["rise"] = rise;
 
 		this.setState(({ data }) => {
 			
@@ -42,7 +42,7 @@ class App extends Component {
 			}
 		})
 	}
-	
+	/* Этот метод был объеденен с onToggleRise в onToggleProp
 	onToggleIncrease = (id) => {
 		this.setState(({data}) => {
 			const index = data.findIndex(elem => elem.id === id);
@@ -55,12 +55,14 @@ class App extends Component {
 				data: newArr
 			}
 		})
-	} 
-	onToggleRice = (id) => {
+	} */
+
+	onToggleProp = (id, prop) => {
+		
 		this.setState(({data}) => ({
 			data: data.map(item => {
 				if (item.id === id){
-					return {...item, rice: !item.rice}
+					return {...item, [prop]: !item[prop]}
 				}
 				return item;
 			})
@@ -81,8 +83,7 @@ class App extends Component {
 
 				<EmployeesList data={this.state.data}
 					onDelete={this.deleteItem} 
-					onToggleIncrease={this.onToggleIncrease}
-					onToggleRise={this.onToggleRice}/>
+					onToggleProp={this.onToggleProp}/>
 				<EmployeesAddForm
 					onAdd={this.addItem} />
 			</div>
