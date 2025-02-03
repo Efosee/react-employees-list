@@ -82,18 +82,17 @@ class App extends Component {
 	}
 
 	filterEmp = (items, filter) => {
-		if (filter === "all") return items;
-		
-		if (filter === ">1000"){
-			return items.filter(item => item.salary > 1000);
-		}
-
-		if (filter === "bonus"){
-			return items.filter(item => item.rise);
+		switch(filter){
+			case 'rise':
+				return items.filter(item => item.rise);
+			case 'moreThen1000':
+				return items.filter(item => item.salary > 1000);
+			default:
+				return items;
 		}
 	}
 
-	updateFilter = (filter) => {
+	onUpdateFilter = (filter) => {
 		this.setState({filter});
 	}
 
@@ -110,7 +109,7 @@ class App extends Component {
 
 				<div className='search-panel'>
 					<SearchPanel onUpdateSearch={this.onUpdateSearch} />
-					<AppFilter updateFilter={this.updateFilter} stateFilter={this.state.filter}/>
+					<AppFilter onUpdateFilter={this.onUpdateFilter} stateFilter={this.state.filter}/>
 
 				</div>
 
